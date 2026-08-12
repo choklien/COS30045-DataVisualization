@@ -63,15 +63,14 @@ energy-webpage-v1
 ├── index.html
 └── README.md
 
+```
 ---
 
-### Generative AI Reflection
+# Generative AI Reflection
 1. Which Tool(s) I Used: 
-ChatGPT
+- ChatGPT
 
 2. What I Used GenAI For
 - Code structure: AI helped me understand overall project organization.
 - Syntax advice: Helped me with providing suggestions on what to have in the website and design suggestion.
 - Debugging: .htaccess configuration for user access
-
-
