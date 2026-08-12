@@ -35,17 +35,6 @@ function initializeFAQ() {
             
             // Toggle active class on answer
             answer.classList.toggle('active');
-            
-            // Optional: Close other FAQs
-            // Uncomment below to allow only one open at a time
-            /*
-            faqQuestions.forEach(otherQuestion => {
-                if (otherQuestion !== this) {
-                    otherQuestion.classList.remove('active');
-                    otherQuestion.nextElementSibling.classList.remove('active');
-                }
-            });
-            */
         });
     });
 }
@@ -70,7 +59,7 @@ function initializeCalculator() {
         const hoursPerDay = parseFloat(document.getElementById('hoursPerDay').value);
         const electricityPrice = parseFloat(document.getElementById('electricityPrice').value);
         
-        // Get wattage (either from selection or custom)
+        // Get wattage (from selection or custom)
         let wattage = getWattageFromSelection(applianceType);
         
         // If custom, get custom wattage
@@ -165,10 +154,10 @@ function calculateEnergy(wattage, hoursPerDay, pricePerKWh) {
     // Daily consumption (kWh)
     const dailyKWh = kW * hoursPerDay;
     
-    // Monthly consumption (kWh) - assuming 30 days
+    // Monthly consumption (kWh) - 30 days
     const monthlyKWh = dailyKWh * 30;
     
-    // Yearly consumption (kWh) - assuming 365 days
+    // Yearly consumption (kWh)
     const yearlyKWh = dailyKWh * 365;
     
     // Calculate costs
@@ -178,7 +167,7 @@ function calculateEnergy(wattage, hoursPerDay, pricePerKWh) {
     const monthlyCost = monthlyKWh * pricePerKWhDollars;
     const yearlyCost = yearlyKWh * pricePerKWhDollars;
     
-    // Calculate CO2 emissions (Australia average: 0.85 kg CO2 per kWh)
+    // Calculate co2 emissions
     const co2PerKWh = 0.85;
     const dailyCO2 = dailyKWh * co2PerKWh;
     const monthlyCO2 = monthlyKWh * co2PerKWh;
