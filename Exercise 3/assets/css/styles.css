@@ -642,3 +642,618 @@ footer {
         font-size: 0.9rem;
     }
 }
+
+/* ========================================
+   DATA STORY PAGE STYLES
+   ======================================== */
+
+/* Story Sections */
+.story-section {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: #FFFFFF;
+    border-radius: 15px;
+    border: 2px solid #ADD8E6;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #6c7a89;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Story Grid - 2 Column Layout */
+.story-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.story-grid-2col {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Story Cards */
+.story-card {
+    background: #FFFFC5;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 2px solid #ADD8E6;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.story-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(173, 216, 230, 0.3);
+    border-color: #FFD1D5;
+}
+
+/* Chart Cards */
+.chart-card {
+    background: #FFFFFF;
+}
+
+.chart-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.chart-card .card-header h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.badge {
+    background: #ADD8E6;
+    color: #2c3e50;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.chart-container {
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.card-footer {
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    color: #6c7a89;
+    border-top: 1px solid #ecf0f1;
+    padding-top: 0.8rem;
+}
+
+/* Legend Hints */
+.legend-hint {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+}
+
+.legend-hint span {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Insight Cards */
+.insight-card {
+    background: linear-gradient(135deg, #FFFFC5 0%, #f8f9fa 100%);
+    border-color: #FFD1D5;
+}
+
+.insight-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.insight-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.6rem;
+}
+
+.insight-card p {
+    font-size: 0.9rem;
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.divider {
+    height: 2px;
+    background: linear-gradient(to right, #ADD8E6, #FFD1D5, transparent);
+    margin: 0.8rem 0;
+}
+
+.insight-box {
+    background: #FFFFFF;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-top: 0.6rem;
+    border-left: 4px solid #f39c12;
+    font-size: 0.85rem;
+    color: #2c3e50;
+}
+
+/* Market Share Bars */
+.market-share-large {
+    margin: 0.8rem 0;
+}
+
+.share-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.share-label {
+    font-weight: 700;
+    font-size: 0.8rem;
+    min-width: 70px;
+    color: #2c3e50;
+}
+
+.share-track {
+    flex: 1;
+    height: 14px;
+    background: #ecf0f1;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.share-fill {
+    height: 100%;
+    border-radius: 7px;
+    transition: width 0.5s ease;
+}
+
+.share-value {
+    font-weight: 700;
+    font-size: 0.8rem;
+    min-width: 35px;
+    color: #2c3e50;
+}
+
+/* Target Audience Cards */
+.audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 1rem auto;
+}
+
+.audience-card {
+    background: #FFFFC5;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #ADD8E6;
+    transition: all 0.3s ease;
+}
+
+.audience-card:hover {
+    transform: translateY(-3px);
+    border-color: #FFD1D5;
+    box-shadow: 0 4px 15px rgba(173, 216, 230, 0.3);
+}
+
+.audience-icon {
+    font-size: 2rem;
+}
+
+.audience-card h4 {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+.audience-card p {
+    font-size: 0.8rem;
+    color: #6c7a89;
+    margin: 0;
+}
+
+/* Story Introduction Text */
+.story-intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto 1.5rem auto;
+    text-align: center;
+    color: #34495e;
+}
+
+/* Cost Comparison */
+.cost-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 0.8rem 0;
+}
+
+.cost-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.85rem;
+}
+
+.size-label {
+    font-weight: 700;
+    color: #2c3e50;
+    min-width: 55px;
+}
+
+.cost-value {
+    font-weight: 700;
+    color: #e74c3c;
+    min-width: 70px;
+    font-size: 0.85rem;
+}
+
+.cost-bar {
+    height: 10px;
+    background: linear-gradient(to right, #2ecc71, #f1c40f, #e74c3c);
+    border-radius: 5px;
+    flex: 1;
+    min-width: 30px;
+}
+
+.insight-note {
+    font-size: 0.7rem !important;
+    color: #95a5a6 !important;
+    margin-top: 0.3rem !important;
+}
+
+/* Recommendation Cards */
+.recommendation-card {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-color: #4caf50;
+}
+
+.tech-insight-card {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-color: #2196f3;
+}
+
+.rec-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.recommendation-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.6rem;
+}
+
+.recommendation-card ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.recommendation-card ul li {
+    padding: 0.2rem 0 0.2rem 1.8rem;
+    position: relative;
+    font-size: 0.85rem;
+    color: #34495e;
+}
+
+.recommendation-card ul li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+}
+
+.rec-box {
+    background: #FFFFFF;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-top: 0.6rem;
+    border-left: 4px solid #2ecc71;
+    font-size: 0.85rem;
+    color: #2c3e50;
+}
+
+.rec-box.warning {
+    border-left-color: #f39c12;
+}
+
+.rec-box.blue {
+    border-left-color: #3498db;
+}
+
+/* Technology Comparison */
+.tech-comparison {
+    margin: 0.8rem 0;
+}
+
+.tech-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #FFFFFF;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+}
+
+.tech-name {
+    font-weight: 700;
+    min-width: 70px;
+    color: #2c3e50;
+}
+
+.tech-rating {
+    font-size: 0.7rem;
+    min-width: 80px;
+}
+
+.tech-energy {
+    flex: 1;
+    color: #34495e;
+}
+
+.tech-tag {
+    padding: 0.1rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.tech-tag.green {
+    background: #d5f5e3;
+    color: #27ae60;
+}
+
+.tech-tag.red {
+    background: #fadbd8;
+    color: #e74c3c;
+}
+
+/* Decision Grid */
+.decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.decision-option {
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.decision-option.green {
+    background: #e8f5e9;
+    border-left: 4px solid #2ecc71;
+}
+
+.decision-option.red {
+    background: #fce4ec;
+    border-left: 4px solid #e74c3c;
+}
+
+.decision-option h4 {
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+}
+
+.decision-option h4.green-text {
+    color: #27ae60;
+}
+
+.decision-option h4.red-text {
+    color: #c0392b;
+}
+
+.decision-option ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.85rem;
+}
+
+.decision-option ul li {
+    padding: 0.1rem 0;
+    color: #34495e;
+}
+
+/* Full Width Cards */
+.full-width {
+    grid-column: span 2;
+}
+
+/* Takeaways */
+.takeaways {
+    margin-top: 2rem;
+}
+
+.takeaway-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.takeaway-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    background: #FFFFC5;
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #ADD8E6;
+    transition: all 0.3s ease;
+}
+
+.takeaway-item:hover {
+    transform: translateX(5px);
+    border-color: #FFD1D5;
+}
+
+.takeaway-icon {
+    font-size: 1.5rem;
+}
+
+.takeaway-item p {
+    font-size: 0.9rem;
+    color: #34495e;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.takeaway-item p strong {
+    color: #2c3e50;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .story-grid-2col {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .full-width {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .story-grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .story-section {
+        padding: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .chart-container {
+        height: 180px;
+    }
+
+    .takeaway-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-row {
+        flex-wrap: wrap;
+    }
+
+    .share-bar {
+        flex-wrap: wrap;
+    }
+
+    .decision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .audience-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-section {
+        padding: 1rem;
+    }
+
+    .chart-container {
+        height: 150px;
+    }
+
+    .story-card {
+        padding: 1rem;
+    }
+
+    .insight-card h3,
+    .recommendation-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .rec-box {
+        font-size: 0.8rem;
+    }
+
+    .cost-item {
+        flex-wrap: wrap;
+    }
+
+    .cost-bar {
+        min-width: 20px;
+    }
+
+    .card-header h3 {
+        font-size: 0.75rem;
+    }
+
+    .badge {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.6rem;
+    }
+
+    .audience-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .audience-card {
+        padding: 0.75rem;
+    }
+
+    .audience-icon {
+        font-size: 1.5rem;
+    }
+
+    .audience-card h4 {
+        font-size: 0.75rem;
+    }
+
+    .audience-card p {
+        font-size: 0.7rem;
+    }
+
+    .story-intro-text {
+        font-size: 0.95rem;
+    }
+}
