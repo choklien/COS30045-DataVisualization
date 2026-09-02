@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Story - TV Energy Consumption</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-section">
+                <div class="logo-link">
+                    <img src="assets/images/PowerIcon.png" alt="Power Logo" class="logo">
+                </div>
+                <span class="site-title">Appliance Energy Consumption</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="datastory.html" class="active">Data Story</a></li>
+                <li><a href="televisions.html">Televisions</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <h1>📊 TV Energy Consumption: Data Story</h1>
+        </section>
+
+        <!-- Target Audience -->
+        <section class="content">
+            <p class="story-intro-text">
+                <strong>🎯 Who is this data story for?</strong>
+            </p>
+            <p class="story-intro-text">
+                This visualisation is designed for <strong>Australian consumers</strong> who are shopping for a new television. 
+                Whether you're a budget-conscious family, an entertainment enthusiast, or someone looking to reduce 
+                your carbon footprint, understanding the <strong>true energy cost</strong> of your TV choice can save you 
+                hundreds of dollars over its lifetime.
+            </p>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">👨‍👩‍👧‍👦</div>
+                    <h4>Families</h4>
+                    <p>Looking to reduce household electricity bills</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🎬</div>
+                    <h4>Home Theatre Enthusiasts</h4>
+                    <p>Wanting the best picture quality without breaking the bank</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🌱</div>
+                    <h4>Eco-Conscious Buyers</h4>
+                    <p>Prioritising energy efficiency and reducing carbon footprint</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🛒</div>
+                    <h4>Value Shoppers</h4>
+                    <p>Seeking the best bang for their buck</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- STORYBOARD 1: Popular Brands (Context Setting)                -->
+        <!-- ============================================================ -->
+        <section class="story-section">
+            <h2 class="section-title">🏷️ Which TV Brands are Most Popular?</h2>
+            <p class="section-subtitle">Understanding the Australian TV market landscape</p>
+
+            <div class="story-grid story-grid-2col">
+                <!-- Visualization: Brand Bar Chart -->
+                <div class="story-card chart-card">
+                    <div class="card-header">
+                        <h3>Available TV Models by Brand</h3>
+                        <span class="badge">Bar Chart</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="brandPopularityChart"></canvas>
+                    </div>
+                    <div class="card-footer">
+                        <p>Count of TV models available in Australia by brand.</p>
+                    </div>
+                </div>
+
+                <!-- Insight: Market Dominance -->
+                <div class="story-card insight-card">
+                    <div class="insight-icon">📈</div>
+                    <h3>Three Brands Dominate the Market</h3>
+                    <div class="market-share-large">
+                        <div class="share-bar">
+                            <span class="share-label">Samsung</span>
+                            <div class="share-track">
+                                <div class="share-fill" style="width:32%; background:#1428A0;"></div>
+                            </div>
+                            <span class="share-value">32%</span>
+                        </div>
+                        <div class="share-bar">
+                            <span class="share-label">Kogan</span>
+                            <div class="share-track">
+                                <div class="share-fill" style="width:23%; background:#E51A1A;"></div>
+                            </div>
+                            <span class="share-value">23%</span>
+                        </div>
+                        <div class="share-bar">
+                            <span class="share-label">LG</span>
+                            <div class="share-track">
+                                <div class="share-fill" style="width:20%; background:#A50034;"></div>
+                            </div>
+                            <span class="share-value">20%</span>
+                        </div>
+                        <div class="share-bar">
+                            <span class="share-label">Others</span>
+                            <div class="share-track">
+                                <div class="share-fill" style="width:25%; background:#95a5a6;"></div>
+                            </div>
+                            <span class="share-value">25%</span>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <p style="font-size:0.9rem; color:#34495e; line-height:1.6;">
+                        <strong>Samsung, Kogan, and LG</strong> dominate the Australian TV market with over 
+                        <strong>80%</strong> of all available models. This high availability means consumers have 
+                        plenty of options across different price points and sizes.
+                    </p>
+                    <div class="insight-box">
+                        💡 <strong>Takeaway:</strong> These brands are likely safe choices with good availability 
+                        and model variety.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- STORYBOARD 2: Screen Technology Comparison                    -->
+        <!-- ============================================================ -->
+        <section class="story-section">
+            <h2 class="section-title">🖥️ Does Screen Technology Matter?</h2>
+            <p class="section-subtitle">LCD vs LCD (LED) vs OLED — which is most efficient?</p>
+
+            <div class="story-grid story-grid-2col">
+                <!-- Visualization 3A: Grouped Bar Chart -->
+                <div class="story-card chart-card">
+                    <div class="card-header">
+                        <h3>Energy by Screen Type &amp; Size</h3>
+                        <span class="badge">Grouped Bar</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="techGroupedChart"></canvas>
+                    </div>
+                    <div class="card-footer">
+                        <p>OLED consumes more energy across ALL size categories.</p>
+                    </div>
+                </div>
+
+                <!-- Insight 3A: Technology Impact -->
+                <div class="story-card insight-card">
+                    <div class="insight-icon">🔋</div>
+                    <h3>OLED: Premium Picture, Premium Energy</h3>
+                    <p><strong>OLED TVs</strong> consistently consume <strong>MORE energy</strong> than LCD/LCD (LED) TVs 
+                    across every size category.</p>
+                    
+                    <div class="tech-comparison">
+                        <div class="tech-row">
+                            <span class="tech-name">LCD</span>
+                            <span class="tech-rating">⚡⚡⚡</span>
+                            <span class="tech-energy">350-610 kWh/yr</span>
+                            <span class="tech-tag green">Most Efficient</span>
+                        </div>
+                        <div class="tech-row">
+                            <span class="tech-name">LCD (LED)</span>
+                            <span class="tech-rating">⚡⚡⚡⚡</span>
+                            <span class="tech-energy">370-620 kWh/yr</span>
+                            <span class="tech-tag green">Efficient</span>
+                        </div>
+                        <div class="tech-row">
+                            <span class="tech-name">OLED</span>
+                            <span class="tech-rating">⚡⚡⚡⚡⚡</span>
+                            <span class="tech-energy">450-700 kWh/yr</span>
+                            <span class="tech-tag red">Energy Hungry</span>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    <div class="insight-box" style="border-left-color:#f39c12;">
+                        <strong>⚠️ Trade-off:</strong> OLED offers stunning picture quality — but it comes at a cost 
+                        for your electricity bill and the environment.
+                    </div>
+                    <p class="insight-note">* Based on 4 hours daily use</p>
+                </div>
+
+                <!-- Recommendation 3B -->
+                <div class="story-card recommendation-card full-width">
+                    <div class="rec-icon">🛒</div>
+                    <h3>Which TV Should You Buy?</h3>
+                    <div class="decision-grid">
+                        <div class="decision-option green">
+                            <h4 class="green-text">✅ Choose LCD (LED) if...</h4>
+                            <ul>
+                                <li>• Energy efficiency is your priority</li>
+                                <li>• You want lower electricity bills</li>
+                                <li>• You watch TV for 4+ hours daily</li>
+                            </ul>
+                        </div>
+                        <div class="decision-option red">
+                            <h4 class="red-text">🎬 Choose OLED if...</h4>
+                            <ul>
+                                <li>• Picture quality is your top priority</li>
+                                <li>• You're a movie/home theater enthusiast</li>
+                                <li>• You're willing to pay for premium experience</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="rec-box warning">
+                        <strong>💡 The Bottom Line:</strong> If energy efficiency is your priority, <strong>LCD (LED)</strong> 
+                        is the better choice. If you want the best picture quality and don't mind higher running costs, 
+                        <strong>OLED</strong> is for you.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- Key Takeaways                                                 -->
+        <!-- ============================================================ -->
+        <section class="content takeaways">
+            <h2>📌 Key Takeaways</h2>
+            <div class="takeaway-grid">
+                <div class="takeaway-item">
+                    <span class="takeaway-icon">🏷️</span>
+                    <p><strong>Samsung, Kogan, LG</strong> dominate 80% of the Australian TV market.</p>
+                </div>
+                <div class="takeaway-item">
+                    <span class="takeaway-icon">📺</span>
+                    <p><strong>Size matters most.</strong> A large TV uses nearly 2x the energy of a small TV.</p>
+                </div>
+                <div class="takeaway-item">
+                    <span class="takeaway-icon">🖥️</span>
+                    <p><strong>OLED = Higher bills.</strong> OLED uses more energy than LCD/LCD (LED).</p>
+                </div>
+                <div class="takeaway-item">
+                    <span class="takeaway-icon">🎯</span>
+                    <p><strong>Shopping tip:</strong> 40-55" with LCD (LED) technology is the efficiency sweet spot.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="currentYear"></span> 105684522 Chok Li En</p>
+            <p>ChatGPT was used for code structure and debugging assistance</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/datastory.js"></script>
+</body>
+</html>
