@@ -13,3 +13,11 @@ d3.select("div")
 // Step 4: Append a svg using D3
 d3.select("svg")
   .append("rect");
+
+d3.select("svg")
+  .append("rect")
+   .attr("x", 50)
+   .attr("y", 50)
+   .attr("width", 100)
+   .attr("height", 30)
+   .style("fill", "green");
