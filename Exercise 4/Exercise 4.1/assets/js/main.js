@@ -9,3 +9,7 @@ d3.select("h2")
 d3.select("div")
   .append("p")
     .text("Purchasing a low energy consumption TV will help with your energy bills!");
+
+// Step 4: Append a svg using D3
+d3.select("svg")
+  .append("rect");
