@@ -4,3 +4,8 @@ d3.select("h1")
 
 d3.select("h2")
   .style("color", "lightblue");
+
+// Step 3: Append an element using D3
+d3.select("div")
+  .append("p")
+    .text("Purchasing a low energy consumption TV will help with your energy bills!");
