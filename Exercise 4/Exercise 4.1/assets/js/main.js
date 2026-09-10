@@ -1,23 +1,5 @@
-// Exercise 4.2 step 2: Apply a style to html element using D3
-d3.select("h1")
-  .style("color", "pink");
-
-d3.select("h2")
-  .style("color", "lightblue");
-
-// Step 3: Append an element using D3
-d3.select("div")
-  .append("p")
-    .text("Purchasing a low energy consumption TV will help with your energy bills!");
-
-// Step 4: Append a svg using D3
-d3.select("svg")
-  .append("rect");
-
-d3.select("svg")
-  .append("rect")
-   .attr("x", 50)
-   .attr("y", 50)
-   .attr("width", 100)
-   .attr("height", 30)
-   .style("fill", "green");
+// Exercise 4.2 Step 3: Create svg object within the new div 
+const svg = d3.select(".responsive-svg-container")
+    .append("svg")
+      .attr("viewBox", "0 0 1200 1600")
+      .style("border", "1px solid black");
