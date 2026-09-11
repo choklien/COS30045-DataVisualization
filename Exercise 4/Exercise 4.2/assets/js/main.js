@@ -10,9 +10,6 @@ d3.select("div")
   .append("p")
     .text("Purchasing a low energy consumption TV will help with your energy bills!");
 
-d3.selectAll("div")
-  .append("p")
-    .text("Testing selectAll()");
 
 // Step 4: Append an SVG element using D3
 d3.select("svg")
