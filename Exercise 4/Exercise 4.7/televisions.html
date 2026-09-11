@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Televisions - Appliance Energy Consumption</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-section">
+                <div class="logo-link">
+                    <img src="assets/images/PowerIcon.png" alt="Power Logo" class="logo">
+                </div>
+                <span class="site-title">Appliance Energy Consumption</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="televisions.html" class="active">Televisions</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <h1>Television Energy Consumption</h1>
+            <p>Calculate the energy usage and cost of your television</p>
+        </section>
+
+        <section class="content">
+            <h2>Television Energy Calculator</h2>
+            <p>Use the calculator below to estimate the energy consumption and cost of your television.</p>
+
+            <!-- Energy Calculator -->
+            <div class="calculator-container">
+                <form id="energyCalculator" class="calculator-form">
+                    <div class="form-group">
+                        <label for="applianceType">Appliance Type:</label>
+                        <select id="applianceType" class="form-control">
+                            <option value="tv_40">40-inch LED TV (80W)</option>
+                            <option value="tv_55">55-inch LED TV (120W)</option>
+                            <option value="tv_65">65-inch OLED TV (180W)</option>
+                            <option value="custom">Custom Wattage</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="customWattageGroup" style="display: none;">
+                        <label for="customWattage">Custom Wattage (W):</label>
+                        <input type="number" id="customWattage" class="form-control" placeholder="Enter wattage in watts" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hoursPerDay">Average Hours Used Per Day:</label>
+                        <input type="number" id="hoursPerDay" class="form-control" placeholder="Enter hours (e.g., 5)" min="0" max="24" step="0.5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="electricityPrice">Electricity Price (cents per kWh):</label>
+                        <input type="number" id="electricityPrice" class="form-control" placeholder="Enter price in cents (e.g., 25)" min="0" step="0.1" required>
+                        <small class="form-text">Typical Australian rate: 20-30 cents per kWh</small>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Calculate Energy Usage</button>
+                </form>
+
+                <!-- Results Panel -->
+                <div id="resultsPanel" class="results-panel">
+                    <h3>Energy Consumption Results</h3>
+                    <div id="resultsContent">
+                        <p>Enter your appliance details and click "Calculate Energy Usage" to see results.</p>
+                    </div>
+                </div>
+
+                <!-- Error Messages -->
+                <div id="errorMessages" class="error-messages"></div>
+            </div>
+
+            <!-- Energy Saving Tips -->
+            <div class="info-box">
+                <h3>💡 Energy Saving Tips for Televisions</h3>
+                <ul>
+                    <li>Enable power-saving mode to reduce consumption by up to 30%</li>
+                    <li>Turn off the TV when no one is watching</li>
+                    <li>Consider OLED TVs which are more energy-efficient</li>
+                    <li>Use smaller screens when possible</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="currentYear"></span> 105684522 Chok Li En</p>
+            <p>ChatGPT was used for code structure and debugging assistance</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/scripts.js"></script>
+</body>
+</html>
