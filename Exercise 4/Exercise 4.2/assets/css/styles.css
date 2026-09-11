@@ -1,3 +1,31 @@
+/* SVG Container for Index Page */
+.svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px solid #ADD8E6;
+    overflow: auto;
+    margin: 1.5rem 0;
+}
+
+.svg-house {
+    max-width: 100%;
+    height: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Make the SVG responsive */
+@media (max-width: 768px) {
+    .svg-container {
+        padding: 0.5rem;
+    }
+}
+
 /* Base Styles */
 * {
     margin: 0;
