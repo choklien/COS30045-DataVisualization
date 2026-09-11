@@ -1,3 +1,11 @@
+/* Exersice 4.3 Step2 */
+.responsive-svg-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
 /* SVG Container for Index Page */
 .svg-container {
     display: flex;
