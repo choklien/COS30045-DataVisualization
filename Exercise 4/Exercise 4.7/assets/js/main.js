@@ -29,7 +29,7 @@ d3.csv("data/tvBrandCount.csv", d => {
 /* Exercise 4.6 - Change viewBox size */
 const svg = d3.select(".responsive-svg-container") 
     .append("svg")
-      .attr("viewBox", "0 0 500 500")
+      .attr("viewBox", "0 0 700 500")
       .style("border", "1px solid black");
 
 // Exercise 4.4 Step 3: Finding information about the data set
@@ -44,7 +44,6 @@ d3.csv("data/tvBrandCount.csv", d => {
   console.log(data.length);
   console.log(d3.max(data, d => d.count));
   console.log(d3.min(data, d => d.count));
-  console.log(d3.extent(data, d => d.count)); //=> array with min and max
 
   // Sort descending by count (largest first)
   data.sort((a, b) => b.count - a.count);
@@ -69,10 +68,6 @@ const drawBarChart = data => {
 
 // Exercise 4.5 Step 2: Make your data visible: Add attributes (.attr) to your bar chart for width, height and fill
 const drawBarChart = data => {
-  const barHeight = 20;
-
-  const barSpacing = 5;
-
   // Exercise 4.6 Step 1: Add Linear scale for count data
   const xScale = d3.scaleLinear()
   .domain([0, 1100])
@@ -85,35 +80,42 @@ const drawBarChart = data => {
  .range([0, 1600]);
  */
 
- // add padding to Y scale to create space between bars
+  // add padding to Y scale to create space between bars
   const yScale = d3.scaleBand()
     .domain(data.map(d => d.brand))
     .range([0, 500])
     .padding(0.1);
 
-  svg
-  .selectAll("rect")
-  .data(data)
-  .join("rect")
-  .attr("class", d => {
-          console.log(d);
-          return `bar bar-${d.count}`;
-        })
-  
-  //.attr("width", d => d.count)
-  // Exercise 4.6 Step 2: Use Linear scale to calculate bar widths
-  .attr("width", d => xScale(d.count))
+  // Exercise 4.7 Step 2: Create a group container for our labels
+  const barAndLabel = svg
+    .selectAll("g")
+    .data(data)
+    .join("g")
+    .attr("transform", d => `translate(0, ${yScale(d.brand)})`);
 
-  //.attr("height", barHeight)
-  .attr("height", yScale.bandwidth()) // Adjust the thickness of the bar
+  // Exercise 4.7 Step 3: Add back the rectangles
+  barAndLabel
+    .append("rect")
+    .attr("width", d => xScale(d.count))
+    .attr("height", yScale.bandwidth())
+    .attr("fill", "blue")
+    .attr("x", 100)
+    .attr("y",0);
 
-  .attr("fill", "blue")
-  .attr("x", 0)
+  // // Exercise 4.7 Step 4: Add the column category text
+  barAndLabel
+    .append("text")
+    .text(d => d.brand)
+    .attr("x", 90)
+    .attr("y", 15)
+    .attr("text-anchor", "end")
+     .style("font-size", "13px");
 
-  //.attr("y", (d, i) => i * (barHeight + barSpacing));
-  .attr("y", (d, i) => yScale(d.brand)); // adjust the location of the bar relative to the y-axis location
-
-
-  
-
+  // Exercise 4.7 Step 5: Add the value number
+  barAndLabel
+    .append("text")
+    .text(d => d.count)
+    .attr("x", d => 100 + xScale(d.count) + 4)
+    .attr("y", 12)
+    .style("font-size", "13px");
 };
