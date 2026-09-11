@@ -33,7 +33,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .logo-section {
@@ -71,7 +70,6 @@ body {
     list-style: none;
     gap: 0.5rem;
     margin: 15px;
-    flex-wrap: wrap;
 }
 
 .nav-menu li {
@@ -163,31 +161,6 @@ main {
     margin-bottom: 1.5rem;
     line-height: 1.8;
     color: #34495e;
-}
-
-/* Content Sections - New for Exercise 4.1 */
-.content-section {
-    margin-bottom: 3rem;
-    background: #FFFFFF;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-    border: 2px solid #FFD1D5;
-    scroll-margin-top: 80px;
-}
-
-.content-section h2 {
-    color: #2c3e50;
-    margin-bottom: 0.5rem;
-    border-bottom: 4px solid #FFD1D5;
-    padding-bottom: 0.5rem;
-    font-weight: 700;
-}
-
-.section-desc {
-    color: #34495e;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
 }
 
 /* Stats Grid */
@@ -531,146 +504,6 @@ main {
     line-height: 1.8;
 }
 
-/* SVG Container - New for Exercise 4.1 */
-.svg-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 12px;
-    border: 2px solid #ADD8E6;
-    overflow: auto;
-}
-
-.svg-house {
-    max-width: 100%;
-    height: auto;
-    background: white;
-}
-
-.svg-house.before {
-    border: 3px solid #e74c3c;
-    border-radius: 8px;
-}
-
-.svg-house.after {
-    border: 3px solid #2ecc71;
-    border-radius: 8px;
-}
-
-/* Comparison Table - New for Exercise 4.1 */
-.table-container {
-    overflow-x: auto;
-    margin-top: 1rem;
-}
-
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-}
-
-.comparison-table thead {
-    background: #ADD8E6;
-}
-
-.comparison-table th {
-    padding: 0.8rem 1rem;
-    text-align: left;
-    font-weight: 700;
-    color: #2c3e50;
-    border-bottom: 3px solid #FFD1D5;
-}
-
-.comparison-table td {
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid #e0e0e0;
-    vertical-align: top;
-}
-
-.comparison-table tbody tr:hover {
-    background: #FFFFC5;
-}
-
-.comparison-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.comparison-table code {
-    background: #f4f4f4;
-    padding: 0.1rem 0.3rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-}
-
-/* Annotation Grid - New for Exercise 4.1 */
-.annotation-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-.annotation-card {
-    background: #FFFFC5;
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 2px solid #ADD8E6;
-    transition: all 0.3s ease;
-}
-
-.annotation-card:hover {
-    border-color: #FFD1D5;
-    box-shadow: 0 4px 15px rgba(173, 216, 230, 0.2);
-    transform: translateY(-3px);
-}
-
-.annotation-card h3 {
-    color: #2c3e50;
-    margin-bottom: 0.8rem;
-    font-size: 1.1rem;
-}
-
-.annotation-example {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.annotation-example svg {
-    max-width: 100%;
-    height: auto;
-    background: white;
-    border-radius: 8px;
-}
-
-.annotation-desc {
-    font-size: 0.9rem;
-    color: #34495e;
-}
-
-.annotation-desc code {
-    background: #f4f4f4;
-    padding: 0.1rem 0.3rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    word-break: break-all;
-}
-
-.annotation-desc p {
-    margin: 0.2rem 0;
-}
-
-.annotation-desc .example {
-    margin-top: 0.4rem;
-    padding: 0.4rem 0.6rem;
-    background: #e8f4f8;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    color: #2c3e50;
-}
-
 /* Footer */
 footer {
     background: #ADD8E6; 
@@ -764,23 +597,6 @@ footer {
     .faq-section {
         padding: 1.5rem;
     }
-
-    .content-section {
-        padding: 1.5rem;
-    }
-
-    .annotation-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .comparison-table {
-        font-size: 0.8rem;
-    }
-
-    .comparison-table th,
-    .comparison-table td {
-        padding: 0.5rem 0.6rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -824,18 +640,5 @@ footer {
         width: 100%;
         padding: 0.7rem;
         font-size: 0.9rem;
-    }
-
-    .content-section {
-        padding: 1rem;
-    }
-
-    .comparison-table {
-        font-size: 0.7rem;
-    }
-
-    .comparison-table th,
-    .comparison-table td {
-        padding: 0.4rem 0.4rem;
     }
 }
