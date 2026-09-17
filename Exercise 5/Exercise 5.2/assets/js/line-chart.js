@@ -75,6 +75,19 @@ const drawLineChart = data => {
     .style("font-size", "13px")
     .style("font-weight", "bold");
 
+  // colour area under the line
+  const areaGenerator = d3.area()
+    .x(d => xScale(d.year))
+    .y0(innerHeight)                 // bottom of chart
+    .y1(d => yScale(d.averagePrice)); // top follows the data
+
+  //  filled area
+  innerChart
+    .append("path")
+    .attr("d", areaGenerator(data))
+    .attr("fill", "#B1B56D")
+    .attr("opacity", 0.4);
+
   // Scatter plot: circles for each data point
   innerChart
     .selectAll("circle")
