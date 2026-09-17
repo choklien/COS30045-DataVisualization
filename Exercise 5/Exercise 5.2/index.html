@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Appliance Energy Consumption</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -35,16 +37,27 @@
         <section class="content">
             <h1>Exercise 5.1: Bar Chart</h1>
             <h2>TV Energy Consumption by Screen Type (55-inch)</h2>
-            <p>This chart shows the average energy consumption of different TV screen technologies for 55-inch models.</p>
+            <p>This chart shows the average energy consumption of different TV screen technologies for 55-inch models.
+            </p>
 
             <!-- Chart container -->
             <div id="bar-chart" class="responsive-svg-container"></div>
         </section>
 
+        <!-- Line Chart Section (Exercise 5.2) -->
+        <section class="content">
+            <h1>Exercise 5.2: Scatter Plot and Line Chart</h1>
+            <h2>Australian Electricity Spot Prices (1998–2024)</h2>
+            <p>Average annual spot price per megawatt hour across Australian states.</p>
+            <div id="line-chart" class="responsive-svg-container"></div>
+        </section>
+
         <section class="content">
             <h2>Energy Consumption in Australian Homes</h2>
-            <p>Australian households consume significant amounts of electricity through various appliances. Understanding these consumption patterns is crucial for reducing energy bills and environmental impact.</p>
-            
+            <p>Australian households consume significant amounts of electricity through various appliances.
+                Understanding these consumption patterns is crucial for reducing energy bills and environmental impact.
+            </p>
+
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3>40%</h3>
@@ -74,47 +87,54 @@
         <!-- FAQ Section with Accordion -->
         <section class="faq-section">
             <h2>Frequently Asked Questions</h2>
-            
+
             <div class="faq-container">
                 <div class="faq-item">
-                    <button class="faq-question">What is the average energy consumption of a household in Australia?</button>
+                    <button class="faq-question">What is the average energy consumption of a household in
+                        Australia?</button>
                     <div class="faq-answer">
-                        <p>The average Australian household consumes approximately 16-20 kWh per day, with appliances accounting for about 40% of this usage.</p>
+                        <p>The average Australian household consumes approximately 16-20 kWh per day, with appliances
+                            accounting for about 40% of this usage.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">Which appliances consume the most energy?</button>
                     <div class="faq-answer">
-                        <p>Heating and cooling systems consume the most energy (around 40%), followed by water heating (25%), and entertainment devices like televisions (10%).</p>
+                        <p>Heating and cooling systems consume the most energy (around 40%), followed by water heating
+                            (25%), and entertainment devices like televisions (10%).</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">How can I calculate my appliance energy consumption?</button>
                     <div class="faq-answer">
-                        <p>Use our interactive energy calculator on the Televisions page. Simply input the wattage, daily usage hours, and electricity price to estimate your consumption.</p>
+                        <p>Use our interactive energy calculator on the Televisions page. Simply input the wattage,
+                            daily usage hours, and electricity price to estimate your consumption.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">What is a kilowatt-hour (kWh)?</button>
                     <div class="faq-answer">
-                        <p>A kilowatt-hour is a unit of energy equal to 1,000 watt-hours. It's the standard measure used by electricity companies to bill customers.</p>
+                        <p>A kilowatt-hour is a unit of energy equal to 1,000 watt-hours. It's the standard measure used
+                            by electricity companies to bill customers.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">What are the most energy-efficient appliances?</button>
                     <div class="faq-answer">
-                        <p>Appliances with a 5-star energy rating are the most efficient. Look for the Energy Rating Label when purchasing new appliances.</p>
+                        <p>Appliances with a 5-star energy rating are the most efficient. Look for the Energy Rating
+                            Label when purchasing new appliances.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">How much can I save by using energy-efficient appliances?</button>
                     <div class="faq-answer">
-                        <p>Switching to energy-efficient appliances can save Australian households up to 30% on their electricity bills, which can amount to $400-$500 annually.</p>
+                        <p>Switching to energy-efficient appliances can save Australian households up to 30% on their
+                            electricity bills, which can amount to $400-$500 annually.</p>
                     </div>
                 </div>
             </div>
@@ -136,5 +156,9 @@
 
     <!-- Bar chart script (Exercise 5.1) -->
     <script src="assets/js/barChart.js"></script>
+
+    <!-- Line chart script (Exercise 5.2) -->
+    <script src="assets/js/line-chart.js"></script>
 </body>
+
 </html>
