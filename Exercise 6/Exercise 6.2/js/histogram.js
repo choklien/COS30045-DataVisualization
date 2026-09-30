@@ -5,21 +5,19 @@ const drawHistogram = (data) => {
     .append("svg")
       .attr("viewBox", `0 0 ${width} ${height}`);
 
-  // ---------- Inner chart group with margins ----------
+  // ---------- Inner chart group ----------
   const innerChart = svg
     .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  // ---------- Create bins ----------
+  // ---------- Create the bins ----------
   const bins = binGenerator(data);
   console.log("Bins created:", bins);
 
-  // ---------- Determine scale domains from bins ----------
-  const minEng = bins[0].x0;                          // lower bound of first bin
-  const maxEng = bins[bins.length - 1].x1;            // upper bound of last bin
-  const binsMaxLength = d3.max(bins, d => d.length);  // tallest bin
-
-  console.log("minEng:", minEng, "maxEng:", maxEng, "binsMaxLength:", binsMaxLength);
+  // ---------- Domains ----------
+  const minEng = bins[0].x0;
+  const maxEng = bins[bins.length - 1].x1;
+  const binsMaxLength = d3.max(bins, d => d.length);
 
   // ---------- Configure scales ----------
   xScale
@@ -31,11 +29,12 @@ const drawHistogram = (data) => {
     .range([innerHeight, 0])
     .nice();
 
-  // ---------- Draw the bars ----------
+  // ---------- Draw bars ----------
   innerChart
-    .selectAll("rect")
+    .selectAll(".bar")
     .data(bins)
     .join("rect")
+      .attr("class", "bar")
       .attr("x", d => xScale(d.x0))
       .attr("y", d => yScale(d.length))
       .attr("width", d => xScale(d.x1) - xScale(d.x0))
@@ -50,15 +49,16 @@ const drawHistogram = (data) => {
 
   innerChart
     .append("g")
-      .attr("transform", `translate(0, ${innerHeight})`)
-      .call(bottomAxis);
+    .attr("class", "x-axis")
+    .attr("transform", `translate(0, ${innerHeight})`)
+    .call(bottomAxis);
 
   innerChart
     .append("g")
-      .call(leftAxis);
+    .attr("class", "y-axis")
+    .call(leftAxis);
 
   // ---------- Axis labels ----------
-  // X-axis label
   innerChart
     .append("text")
     .text("Energy Consumption (kWh/year)")
@@ -69,7 +69,6 @@ const drawHistogram = (data) => {
     .style("font-weight", "bold")
     .style("fill", "#2c3e50");
 
-  // Y-axis label (rotated)
   innerChart
     .append("text")
     .text("Number of TVs")
