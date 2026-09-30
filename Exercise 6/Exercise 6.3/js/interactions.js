@@ -145,54 +145,13 @@ const populateFilters = (data) => {
     };
 };
 
-// Exercise 6.3 - Tooltip + Mouse Events
+// Tooltip + Mouse Events
 // ---------- Create tooltip ----------
 const createTooltip = () => {
 
-    // Tooltip container (positioned absolutely relative to the page)
-    d3.select("body")
-        .append("div")
-        .attr("class", "chart-tooltip")
-        .attr("id", "scatter-tooltip")
-        .style("opacity", 0);
 };
 
 // ---------- Attach mouse events to circles ----------
 const handleMouseEvents = () => {
 
-    d3.selectAll("#scatterplot circle")
-        .on("mouseover", function (event, d) {
-            // Highlight the hovered circle
-            d3.select(this)
-                .attr("opacity", 1)
-                .attr("stroke", "#2c3e50")
-                .attr("stroke-width", 2);
-
-            // Show tooltip with details
-            d3.select("#scatter-tooltip")
-                .style("opacity", 1)
-                .style("left", (event.pageX + 12) + "px")
-                .style("top", (event.pageY - 28) + "px")
-                .html(`
-          <strong>${d.brand}</strong><br>
-          ${d.screenSize}" ${d.screenTech}<br>
-          ${d.star}★ &nbsp; ${d.energyConsumption} kWh
-        `);
-        })
-        .on("mousemove", function (event) {
-            // Keep tooltip following the cursor
-            d3.select("#scatter-tooltip")
-                .style("left", (event.pageX + 12) + "px")
-                .style("top", (event.pageY - 28) + "px");
-        })
-        .on("mouseout", function () {
-            // Reset the circle
-            d3.select(this)
-                .attr("opacity", 0.5)
-                .attr("stroke", "none");
-
-            // Hide tooltip
-            d3.select("#scatter-tooltip")
-                .style("opacity", 0);
-        });
 };
