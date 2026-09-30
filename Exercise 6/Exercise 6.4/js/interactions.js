@@ -97,6 +97,8 @@ const populateFilters = (data) => {
 
         // ---- Log current filter state ----
         console.log(`Filtered → tech: ${filterTech}, size: ${filterSize}, rows: ${updatedData.length}`);
+
+        handleHistogramMouseEvents();
     };
 
     // Update the scatterplot when filters change
@@ -141,17 +143,211 @@ const populateFilters = (data) => {
             .attr("opacity", 0.65);      // fade in
 
         // Re-attach mouse events to the (re-drawn) circles
-        handleMouseEvents();
+        handleScatterplotMouseEvents();
     };
 };
 
 // Tooltip + Mouse Events
-// ---------- Create tooltip ----------
-const createTooltip = () => {
+// ---------- Create tooltip for scatterplot ----------
+const createScatterplotTooltip = () => {
 
+    // Tooltip group appended to the scatterplot inner chart
+    // (uses .scatterplot-tooltip class so it doesn't clash with histogram tooltip)
+    const scatterplotInner = innerChartS;
+
+    const tooltip = scatterplotInner
+        .append("g")
+        .attr("class", "scatterplot-tooltip")
+        .style("opacity", 0);
+
+    tooltip
+        .append("rect")
+        .attr("width", 200)
+        .attr("height", 58)
+        .attr("rx", 4)
+        .attr("ry", 4)
+        .attr("fill", "#FFFDD0")
+        .attr("fill-opacity", 0.95)
+        .attr("stroke", "#2c3e50")
+        .attr("stroke-width", 1);
+
+    tooltip
+        .append("text")
+        .attr("class", "scatterplot-tooltip-line-1")
+        .attr("x", 10)
+        .attr("y", 18)
+        .attr("fill", "#2c3e50")
+        .style("font-size", "12px")
+        .style("font-weight", 700)
+        .text("");
+
+    tooltip
+        .append("text")
+        .attr("class", "scatterplot-tooltip-line-2")
+        .attr("x", 10)
+        .attr("y", 34)
+        .attr("fill", "#2c3e50")
+        .style("font-size", "11px")
+        .text("");
+
+    tooltip
+        .append("text")
+        .attr("class", "scatterplot-tooltip-line-3")
+        .attr("x", 10)
+        .attr("y", 50)
+        .attr("fill", "#4A90A4")
+        .style("font-size", "11px")
+        .style("font-weight", 600)
+        .text("");
 };
 
-// ---------- Attach mouse events to circles ----------
-const handleMouseEvents = () => {
+const handleScatterplotMouseEvents = () => {
 
+    innerChartS.selectAll("circle")
+        .on("mouseenter", (event, d) => {
+
+            d3.select(".scatterplot-tooltip-line-1")
+                .text(d.brand);
+
+            d3.select(".scatterplot-tooltip-line-2")
+                .text(d.model && d.model.length > 28 ? d.model.slice(0, 28) + "…" : d.model);
+
+            d3.select(".scatterplot-tooltip-line-3")
+                .text(`${d.screenSize}" ${d.screenTech} · ${d.star}★ · ${d.energyConsumption} kWh`);
+
+            const cx = +event.target.getAttribute("cx");
+            const cy = +event.target.getAttribute("cy");
+
+            // ---- Tooltip size (must match createScatterplotTooltip) ----
+            const ttW = 200;
+            const ttH = 58;
+            const gap = 10;   // px gap between tooltip and circle
+
+            // ---- Center horizontally over the circle ----
+            const tooltipX = cx - ttW / 2;
+
+            // ---- Decide above or below ----
+            // 'cy' is the circle's y-position (small value = near top).
+            // If there's not enough room above (i.e. cy < ttH + gap),
+            // place the tooltip below the circle instead.
+            const tooltipY = (cy < ttH + gap)
+                ? cy + gap + 6                // below the circle
+                : cy - ttH - gap;             // above the circle (default)
+
+            d3.select(".scatterplot-tooltip")
+                .attr("transform", `translate(${tooltipX}, ${tooltipY})`)
+                .transition()
+                .duration(150)
+                .style("opacity", 1);
+
+            // Highlight circle
+            d3.select(event.target)
+                .attr("opacity", 1)
+                .attr("stroke", "#2c3e50")
+                .attr("stroke-width", 2);
+        })
+        .on("mouseleave", (event) => {
+            d3.select(".scatterplot-tooltip")
+                .style("opacity", 0)
+                .attr("transform", "translate(0, -500)");
+
+            d3.select(event.target)
+                .attr("opacity", 0.65)
+                .attr("stroke", "none");
+        });
+};
+
+// Extension - Histogram tooltip
+const createHistogramTooltip = () => {
+
+    // Tooltip group appended to the histogram inner chart
+    // (uses .histogram-tooltip class so it doesn't clash with scatter tooltip)
+    const histogramInner = d3.select("#histogram g");
+
+    const tooltip = histogramInner
+        .append("g")
+        .attr("class", "histogram-tooltip")
+        .style("opacity", 0);
+
+    tooltip
+        .append("rect")
+        .attr("width", 120)
+        .attr("height", 40)
+        .attr("rx", 4)
+        .attr("ry", 4)
+        .attr("fill", "#FFFDD0")
+        .attr("fill-opacity", 0.95)
+        .attr("stroke", "#2c3e50")
+        .attr("stroke-width", 1);
+
+    tooltip
+        .append("text")
+        .attr("class", "histogram-tooltip-line-1")
+        .attr("x", 10)
+        .attr("y", 18)
+        .attr("fill", "#FFFDD0")
+        .style("font-size", "11px")
+        .style("font-weight", 700)
+        .text("");
+
+    tooltip
+        .append("text")
+        .attr("class", "histogram-tooltip-line-2")
+        .attr("x", 10)
+        .attr("y", 34)
+        .attr("fill", "#FFFDD0")
+        .style("font-size", "11px")
+        .text("");
+};
+
+const handleHistogramMouseEvents = () => {
+
+    d3.selectAll("#histogram rect")
+        .on("mouseenter", (event, d) => {
+            // d is a bin object: { x0, x1, length, ... }
+            if (!d || d.x0 === undefined) return;   // skip axis rects
+
+            d3.select(".histogram-tooltip-line-1")
+                .text(`${d.x0} – ${d.x1} kWh`);
+
+            d3.select(".histogram-tooltip-line-2")
+                .text(`${d.length} TVs`);
+
+            const bx = +event.target.getAttribute("x");
+            const by = +event.target.getAttribute("y");
+            const bw = +event.target.getAttribute("width");
+            const bh = +event.target.getAttribute("height");
+
+            // ---- Tooltip size (must match createHistogramTooltip) ----
+            const ttW = 140;
+            const ttH = 44;
+            const gap = 8;   // px gap between tooltip and bar
+
+            // ---- Center horizontally over the bar ----
+            const tooltipX = bx + bw / 2 - ttW / 2;
+
+            // ---- Decide above or below ----
+            // 'by' is the top of the bar (small value = tall bar).
+            // If there's not enough room above (i.e. by < ttH + gap),
+            // place the tooltip below the bar instead.
+            const tooltipY = (by < ttH + gap)
+                ? by + bh + gap               // below the bar
+                : by - ttH - gap;             // above the bar (default)
+
+            d3.select(".histogram-tooltip")
+                .attr("transform", `translate(${tooltipX}, ${tooltipY})`)
+                .transition()
+                .duration(150)
+                .style("opacity", 1);
+
+            // Highlight bar
+            d3.select(event.target).attr("fill", "#2c3e50");
+        })
+        .on("mouseleave", (event) => {
+            d3.select(".histogram-tooltip")
+                .style("opacity", 0)
+                .attr("transform", "translate(0, -500)");
+
+            d3.select(event.target).attr("fill", barColor);
+        });
 };
