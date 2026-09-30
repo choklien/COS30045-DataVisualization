@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Appliance Energy Consumption</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/visualizations.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo-section">
                 <div class="logo-link">
-                    <img src="assets/images/PowerIcon.png" alt="Power Logo" class="logo">
+                    <img src="images/PowerIcon.png" alt="Power Logo" class="logo">
                 </div>
                 <span class="site-title">Appliance Energy Consumption</span>
             </a>
@@ -27,14 +30,34 @@
     <!-- Main Content -->
     <main>
         <section class="hero">
-            <h1>Appliance Energy Consumption</h1>
+            <h1>TV Energy Consumption</h1>
             <p>Understanding energy usage in Australian households</p>
         </section>
 
         <section class="content">
+            <h2>Energy Consumption for different TV screen types and sizes</h2>
+            <p>TV's vary considerably in energy consumption.</p>
+
+            <!-- Histogram container -->
+            <div id="histogram" class="responsive-svg-container"></div>
+
+            <div class="body">
+                <h3>Data source</h3>
+                <p>
+                    <a href="https://data.gov.au/data/dataset/energy-rating-for-household-appliances">
+                        Energy Rating Data for household appliances – Televisions
+                    </a><br>
+                    Downloaded Jan 2026
+                </p>
+            </div>
+        </section>
+
+        <section class="content">
             <h2>Energy Consumption in Australian Homes</h2>
-            <p>Australian households consume significant amounts of electricity through various appliances. Understanding these consumption patterns is crucial for reducing energy bills and environmental impact.</p>
-            
+            <p>Australian households consume significant amounts of electricity through various appliances.
+                Understanding these consumption patterns is crucial for reducing energy bills and environmental impact.
+            </p>
+
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3>40%</h3>
@@ -64,47 +87,54 @@
         <!-- FAQ Section with Accordion -->
         <section class="faq-section">
             <h2>Frequently Asked Questions</h2>
-            
+
             <div class="faq-container">
                 <div class="faq-item">
-                    <button class="faq-question">What is the average energy consumption of a household in Australia?</button>
+                    <button class="faq-question">What is the average energy consumption of a household in
+                        Australia?</button>
                     <div class="faq-answer">
-                        <p>The average Australian household consumes approximately 16-20 kWh per day, with appliances accounting for about 40% of this usage.</p>
+                        <p>The average Australian household consumes approximately 16-20 kWh per day, with appliances
+                            accounting for about 40% of this usage.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">Which appliances consume the most energy?</button>
                     <div class="faq-answer">
-                        <p>Heating and cooling systems consume the most energy (around 40%), followed by water heating (25%), and entertainment devices like televisions (10%).</p>
+                        <p>Heating and cooling systems consume the most energy (around 40%), followed by water heating
+                            (25%), and entertainment devices like televisions (10%).</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">How can I calculate my appliance energy consumption?</button>
                     <div class="faq-answer">
-                        <p>Use our interactive energy calculator on the Televisions page. Simply input the wattage, daily usage hours, and electricity price to estimate your consumption.</p>
+                        <p>Use our interactive energy calculator on the Televisions page. Simply input the wattage,
+                            daily usage hours, and electricity price to estimate your consumption.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">What is a kilowatt-hour (kWh)?</button>
                     <div class="faq-answer">
-                        <p>A kilowatt-hour is a unit of energy equal to 1,000 watt-hours. It's the standard measure used by electricity companies to bill customers.</p>
+                        <p>A kilowatt-hour is a unit of energy equal to 1,000 watt-hours. It's the standard measure used
+                            by electricity companies to bill customers.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">What are the most energy-efficient appliances?</button>
                     <div class="faq-answer">
-                        <p>Appliances with a 5-star energy rating are the most efficient. Look for the Energy Rating Label when purchasing new appliances.</p>
+                        <p>Appliances with a 5-star energy rating are the most efficient. Look for the Energy Rating
+                            Label when purchasing new appliances.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">How much can I save by using energy-efficient appliances?</button>
                     <div class="faq-answer">
-                        <p>Switching to energy-efficient appliances can save Australian households up to 30% on their electricity bills, which can amount to $400-$500 annually.</p>
+                        <p>Switching to energy-efficient appliances can save Australian households up to 30% on their
+                            electricity bills, which can amount to $400-$500 annually.</p>
                     </div>
                 </div>
             </div>
@@ -119,6 +149,12 @@
         </div>
     </footer>
 
-    <script src="assets/js/scripts.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/load-data.js"></script>
+    <script src="js/shared-constants.js"></script>
+    <script src="js/interactions.js"></script>
+    <script src="js/histogram.js"></script>
 </body>
+
 </html>
