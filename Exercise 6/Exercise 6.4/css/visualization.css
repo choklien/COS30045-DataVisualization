@@ -99,6 +99,12 @@
 }
 
 /* ---------- Tooltip ---------- */
+.histogram-tooltip text,
+.scatterplot-tooltip text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    pointer-events: none;
+}
+
 .chart-tooltip {
     position: absolute;
     padding: 0.5rem 0.8rem;
@@ -122,6 +128,15 @@
 
 .chart-tooltip strong {
     color: #FFD1D5;
+}
+
+.tooltip text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    pointer-events: none;    /* prevent tooltip from blocking hover of other circles */
+}
+
+.tooltip rect {
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
 }
 
 /* ---------- Brush (for 6.2 interactive filter) ---------- */
