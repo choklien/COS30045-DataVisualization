@@ -1,0 +1,171 @@
+/* Visualization Styles */
+
+/* ---------- Responsive SVG Container ---------- */
+.responsive-svg-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+.responsive-svg-container svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+/* ---------- Chart Typography ---------- */
+.responsive-svg-container text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    fill: #2c3e50;
+}
+
+/* Axis labels */
+.responsive-svg-container .axis-label {
+    font-size: 13px;
+    font-weight: 600;
+    fill: #2c3e50;
+}
+
+/* Tick text */
+.responsive-svg-container .tick text {
+    font-size: 11px;
+    fill: #4a5568;
+}
+
+/* Tick lines (light grid feel) */
+.responsive-svg-container .tick line {
+    stroke: #cbd5e0;
+    stroke-dasharray: 2 2;
+}
+
+/* Axis lines (bottom + left) */
+.responsive-svg-container .domain {
+    stroke: #2c3e50;
+    stroke-width: 1.5;
+}
+
+/* ---------- Bars (Histogram) ---------- */
+.responsive-svg-container .bar {
+    fill: #4A90A4;
+    transition: fill 0.2s ease, opacity 0.2s ease;
+}
+
+.responsive-svg-container .bar:hover {
+    fill: #2c3e50;
+    opacity: 0.9;
+}
+
+/* Dimmed bars (used when filtering in 6.2) */
+.responsive-svg-container .bar.dimmed {
+    fill: #cbd5e0;
+    opacity: 0.4;
+}
+
+/* Highlighted bars (used when filtering in 6.2) */
+.responsive-svg-container .bar.highlighted {
+    fill: #FFD1D5;
+    opacity: 1;
+}
+
+/* ---------- Axis Grid (optional) ---------- */
+.responsive-svg-container .grid line {
+    stroke: #e2e8f0;
+    stroke-dasharray: 3 3;
+}
+
+.responsive-svg-container .grid path {
+    stroke-width: 0;
+}
+
+/* ---------- Chart Title ---------- */
+.responsive-svg-container .chart-title {
+    font-size: 15px;
+    font-weight: 700;
+    fill: #2c3e50;
+}
+
+/* ---------- Chart Legend ---------- */
+.responsive-svg-container .legend-item text {
+    font-size: 12px;
+    fill: #2c3e50;
+}
+
+.responsive-svg-container .legend-item rect {
+    stroke: #ffffff;
+    stroke-width: 1;
+}
+
+/* ---------- Tooltip ---------- */
+.chart-tooltip {
+    position: absolute;
+    padding: 0.5rem 0.8rem;
+    background: #2c3e50;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.chart-tooltip.visible {
+    opacity: 1;
+}
+
+.chart-tooltip strong {
+    color: #FFD1D5;
+}
+
+/* ---------- Brush (for 6.2 interactive filter) ---------- */
+.responsive-svg-container .brush .selection {
+    fill: #4A90A4;
+    fill-opacity: 0.25;
+    stroke: #4A90A4;
+    stroke-width: 1.5;
+}
+
+.responsive-svg-container .brush .handle {
+    fill: #FFD1D5;
+}
+
+/* ---------- Loading / Empty State ---------- */
+.chart-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    color: #6c7a89;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* ---------- Responsive Tweaks ---------- */
+@media (max-width: 768px) {
+    .responsive-svg-container {
+        padding: 0.5rem 0;
+    }
+
+    .responsive-svg-container .axis-label {
+        font-size: 12px;
+    }
+
+    .responsive-svg-container .tick text {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-svg-container .axis-label {
+        font-size: 11px;
+    }
+
+    .responsive-svg-container .tick text {
+        font-size: 9px;
+    }
+}
