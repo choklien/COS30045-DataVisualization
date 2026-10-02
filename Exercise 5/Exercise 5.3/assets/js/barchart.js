@@ -34,7 +34,7 @@ const drawBarChart = data => {
 
   // Create scales
   const xScale = d3.scaleBand()
-    .domain(data.map(d => d.screenTech))  // Convert to uppercase
+    .domain(data.map(d => d.screenTech))
     .range([0, innerWidth])
     .padding(0.1);
 

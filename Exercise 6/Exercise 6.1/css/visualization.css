@@ -58,13 +58,11 @@
     opacity: 0.9;
 }
 
-/* Dimmed bars (used when filtering in 6.2) */
 .responsive-svg-container .bar.dimmed {
     fill: #cbd5e0;
     opacity: 0.4;
 }
 
-/* Highlighted bars (used when filtering in 6.2) */
 .responsive-svg-container .bar.highlighted {
     fill: #FFD1D5;
     opacity: 1;
@@ -122,7 +120,6 @@
     color: #FFD1D5;
 }
 
-/* ---------- Brush (for 6.2 interactive filter) ---------- */
 .responsive-svg-container .brush .selection {
     fill: #4A90A4;
     fill-opacity: 0.25;

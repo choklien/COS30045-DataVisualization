@@ -67,13 +67,13 @@ const populateFilters = (data) => {
             updatedData = updatedData.filter(tv => tv.screenSize === filterSize);
         }
 
-        // ---- Re-bin (always 14 bins thanks to frozen domain) ----
+        // ---- Re-bin (always 14 bins because of frozen domain) ----
         const updatedBins = binGenerator(updatedData);
 
         // ═══════════════════════════════════════════════════════════
         // Rescale X — but keep the FULL [0, 2800] range for axis context
         // ═══════════════════════════════════════════════════════════
-        // We keep the full 0–2800 range so bars stay at consistent positions
+        // keep the full 0–2800 range so bars stay at consistent positions
         const newMinEng = updatedBins[0].x0;                          // = 0
         const newMaxEng = updatedBins[updatedBins.length - 1].x1;     // = 2800
 
@@ -106,7 +106,7 @@ const populateFilters = (data) => {
 
         // ---- Update bars ----
         d3.selectAll("#histogram .bar")
-            .data(updatedBins, d => d.x0)     // key by x0 so bars match 1:1
+            .data(updatedBins, d => d.x0)
             .transition()
             .duration(500)
             .ease(d3.easeCubicInOut)
@@ -350,7 +350,7 @@ const handleHistogramMouseEvents = () => {
 
             // ---- Decide above or below ----
             // 'by' is the top of the bar (small value = tall bar).
-            // If there's not enough room above (i.e. by < ttH + gap),
+            // If there's not enough room above (exp: by < ttH + gap),
             // place the tooltip below the bar instead.
             const tooltipY = (by < ttH + gap)
                 ? by + bh + gap               // below the bar

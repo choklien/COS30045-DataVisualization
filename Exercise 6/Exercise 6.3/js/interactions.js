@@ -106,7 +106,7 @@ const populateFilters = (data) => {
 
         // ---- Update bars ----
         d3.selectAll("#histogram .bar")
-            .data(updatedBins, d => d.x0)     // key by x0 so bars match 1:1
+            .data(updatedBins, d => d.x0)
             .transition()
             .duration(500)
             .ease(d3.easeCubicInOut)
@@ -166,7 +166,7 @@ const populateFilters = (data) => {
     };
 };
 
-// Tooltip + Mouse Events
+// Tooltip + Mouse Events (next exercise)
 // ---------- Create tooltip ----------
 const createTooltip = () => {
 
