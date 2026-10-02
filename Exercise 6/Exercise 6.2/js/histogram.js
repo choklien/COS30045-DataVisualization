@@ -3,12 +3,13 @@ const drawHistogram = (data) => {
   // ---------- SVG container ----------
   const svg = d3.select("#histogram")
     .append("svg")
-      .attr("viewBox", `0 0 ${width} ${height}`);
+    .attr("viewBox", `0 0 ${width} ${height}`);
 
   // ---------- Inner chart group ----------
   const innerChart = svg
     .append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    .attr("class", "histogram-inner")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
   // ---------- Create the bins ----------
   const bins = binGenerator(data);
@@ -34,14 +35,14 @@ const drawHistogram = (data) => {
     .selectAll(".bar")
     .data(bins)
     .join("rect")
-      .attr("class", "bar")
-      .attr("x", d => xScale(d.x0))
-      .attr("y", d => yScale(d.length))
-      .attr("width", d => xScale(d.x1) - xScale(d.x0))
-      .attr("height", d => innerHeight - yScale(d.length))
-      .attr("fill", barColor)
-      .attr("stroke", bodyBackgroundColor)
-      .attr("stroke-width", 2);
+    .attr("class", "bar")
+    .attr("x", d => xScale(d.x0))
+    .attr("width", d => xScale(d.x1) - xScale(d.x0))
+    .attr("y", d => yScale(d.length))
+    .attr("height", d => innerHeight - yScale(d.length))
+    .attr("fill", barColor)
+    .attr("stroke", bodyBackgroundColor)
+    .attr("stroke-width", 2);
 
   // ---------- Axes ----------
   const bottomAxis = d3.axisBottom(xScale);

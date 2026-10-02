@@ -53,7 +53,7 @@ const populateFilters = (data) => {
         updateScatterplot(activeTech, activeSize, data);
     };
 
-    // Filter data + update bars + rescale y-axis
+        // Filter data + update bars + rescale BOTH axes
     const updateHistogram = (filterTech, filterSize, data) => {
 
         // ---- Filter the data (AND logic) ----
@@ -67,18 +67,36 @@ const populateFilters = (data) => {
             updatedData = updatedData.filter(tv => tv.screenSize === filterSize);
         }
 
-        // ---- Re-bin ----
+        // ---- Re-bin (always 14 bins thanks to frozen domain) ----
         const updatedBins = binGenerator(updatedData);
 
-        // ---- Optionally rescale the y-axis ----
+        // ═══════════════════════════════════════════════════════════
+        // Rescale X — but keep the FULL [0, 2800] range for axis context
+        // ═══════════════════════════════════════════════════════════
+        // We keep the full 0–2800 range so bars stay at consistent positions
+        const newMinEng = updatedBins[0].x0;                          // = 0
+        const newMaxEng = updatedBins[updatedBins.length - 1].x1;     // = 2800
+
+        xScale
+            .domain([newMinEng, newMaxEng])
+            .range([0, innerWidth]);
+
+        d3.select("#histogram .x-axis")
+            .transition()
+            .duration(500)
+            .ease(d3.easeCubicInOut)
+            .call(d3.axisBottom(xScale));
+
+        // ═══════════════════════════════════════════════════════════
+        // Rescale Y — this is dynamic (fits the filtered max count)
+        // ═══════════════════════════════════════════════════════════
         if (RESCALE_ON_FILTER) {
-            const newMax = d3.max(updatedBins, d => d.length) || 1;   // fallback to 1 if empty
+            const newMax = d3.max(updatedBins, d => d.length) || 1;
             yScale
                 .domain([0, newMax])
                 .range([innerHeight, 0])
                 .nice();
 
-            // Re-render the y-axis with the new scale
             d3.select("#histogram .y-axis")
                 .transition()
                 .duration(500)
@@ -87,15 +105,16 @@ const populateFilters = (data) => {
         }
 
         // ---- Update bars ----
-        d3.selectAll("#histogram rect")
-            .data(updatedBins)
+        d3.selectAll("#histogram .bar")
+            .data(updatedBins, d => d.x0)     // key by x0 so bars match 1:1
             .transition()
             .duration(500)
             .ease(d3.easeCubicInOut)
+            .attr("x", d => xScale(d.x0))
+            .attr("width", d => xScale(d.x1) - xScale(d.x0))
             .attr("y", d => yScale(d.length))
             .attr("height", d => innerHeight - yScale(d.length));
 
-        // ---- Log current filter state ----
         console.log(`Filtered → tech: ${filterTech}, size: ${filterSize}, rows: ${updatedData.length}`);
 
         handleHistogramMouseEvents();
@@ -151,11 +170,7 @@ const populateFilters = (data) => {
 // ---------- Create tooltip for scatterplot ----------
 const createScatterplotTooltip = () => {
 
-    // Tooltip group appended to the scatterplot inner chart
-    // (uses .scatterplot-tooltip class so it doesn't clash with histogram tooltip)
-    const scatterplotInner = innerChartS;
-
-    const tooltip = scatterplotInner
+    const tooltip = innerChartS
         .append("g")
         .attr("class", "scatterplot-tooltip")
         .style("opacity", 0);
@@ -223,16 +238,18 @@ const handleScatterplotMouseEvents = () => {
             const ttH = 58;
             const gap = 10;   // px gap between tooltip and circle
 
-            // ---- Center horizontally over the circle ----
-            const tooltipX = cx - ttW / 2;
+            let tooltipX = cx - ttW / 2;
+            if (tooltipX < 5) tooltipX = 5;   // don't go off left edge
+            if (tooltipX + ttW > innerWidth) tooltipX = innerWidth - ttW;   // don't go off right edge
 
             // ---- Decide above or below ----
             // 'cy' is the circle's y-position (small value = near top).
             // If there's not enough room above (i.e. cy < ttH + gap),
             // place the tooltip below the circle instead.
-            const tooltipY = (cy < ttH + gap)
+            let tooltipY = (cy < ttH + gap)
                 ? cy + gap + 6                // below the circle
                 : cy - ttH - gap;             // above the circle (default)
+            if (tooltipY + ttH > innerHeight) tooltipY = innerHeight - ttH;   // don't go off bottom edge
 
             d3.select(".scatterplot-tooltip")
                 .attr("transform", `translate(${tooltipX}, ${tooltipY})`)
@@ -262,7 +279,12 @@ const createHistogramTooltip = () => {
 
     // Tooltip group appended to the histogram inner chart
     // (uses .histogram-tooltip class so it doesn't clash with scatter tooltip)
-    const histogramInner = d3.select("#histogram g");
+    const histogramInner = d3.select("#histogram .histogram-inner");
+
+    if(histogramInner.empty()) {
+        console.error("Histogram inner chart not found.");
+        return;
+    }
 
     const tooltip = histogramInner
         .append("g")
@@ -285,7 +307,7 @@ const createHistogramTooltip = () => {
         .attr("class", "histogram-tooltip-line-1")
         .attr("x", 10)
         .attr("y", 18)
-        .attr("fill", "#FFFDD0")
+        .attr("fill", "#2c3e50")
         .style("font-size", "11px")
         .style("font-weight", 700)
         .text("");
@@ -295,17 +317,17 @@ const createHistogramTooltip = () => {
         .attr("class", "histogram-tooltip-line-2")
         .attr("x", 10)
         .attr("y", 34)
-        .attr("fill", "#FFFDD0")
+        .attr("fill", "#2c3e50")
         .style("font-size", "11px")
         .text("");
 };
 
 const handleHistogramMouseEvents = () => {
 
-    d3.selectAll("#histogram rect")
+    d3.selectAll("#histogram .bar")
         .on("mouseenter", (event, d) => {
             // d is a bin object: { x0, x1, length, ... }
-            if (!d || d.x0 === undefined) return;   // skip axis rects
+            if (!d || d.x0 === undefined) return; 
 
             d3.select(".histogram-tooltip-line-1")
                 .text(`${d.x0} – ${d.x1} kWh`);
@@ -319,8 +341,8 @@ const handleHistogramMouseEvents = () => {
             const bh = +event.target.getAttribute("height");
 
             // ---- Tooltip size (must match createHistogramTooltip) ----
-            const ttW = 140;
-            const ttH = 44;
+            const ttW = 120;
+            const ttH = 40;
             const gap = 8;   // px gap between tooltip and bar
 
             // ---- Center horizontally over the bar ----

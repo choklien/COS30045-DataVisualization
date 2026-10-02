@@ -53,7 +53,7 @@ const populateFilters = (data) => {
         updateScatterplot(activeTech, activeSize, data);
     };
 
-    // Filter data + update bars + rescale y-axis
+        // Filter data + update bars + rescale BOTH axes
     const updateHistogram = (filterTech, filterSize, data) => {
 
         // ---- Filter the data (AND logic) ----
@@ -67,18 +67,36 @@ const populateFilters = (data) => {
             updatedData = updatedData.filter(tv => tv.screenSize === filterSize);
         }
 
-        // ---- Re-bin ----
+        // ---- Re-bin (always 14 bins thanks to frozen domain) ----
         const updatedBins = binGenerator(updatedData);
 
-        // ---- Optionally rescale the y-axis ----
+        // ═══════════════════════════════════════════════════════════
+        // Rescale X — but keep the FULL [0, 2800] range for axis context
+        // ═══════════════════════════════════════════════════════════
+        // We keep the full 0–2800 range so bars stay at consistent positions
+        const newMinEng = updatedBins[0].x0;                          // = 0
+        const newMaxEng = updatedBins[updatedBins.length - 1].x1;     // = 2800
+
+        xScale
+            .domain([newMinEng, newMaxEng])
+            .range([0, innerWidth]);
+
+        d3.select("#histogram .x-axis")
+            .transition()
+            .duration(500)
+            .ease(d3.easeCubicInOut)
+            .call(d3.axisBottom(xScale));
+
+        // ═══════════════════════════════════════════════════════════
+        // Rescale Y — this is dynamic (fits the filtered max count)
+        // ═══════════════════════════════════════════════════════════
         if (RESCALE_ON_FILTER) {
-            const newMax = d3.max(updatedBins, d => d.length) || 1;   // fallback to 1 if empty
+            const newMax = d3.max(updatedBins, d => d.length) || 1;
             yScale
                 .domain([0, newMax])
                 .range([innerHeight, 0])
                 .nice();
 
-            // Re-render the y-axis with the new scale
             d3.select("#histogram .y-axis")
                 .transition()
                 .duration(500)
@@ -87,16 +105,19 @@ const populateFilters = (data) => {
         }
 
         // ---- Update bars ----
-        d3.selectAll("#histogram rect")
-            .data(updatedBins)
+        d3.selectAll("#histogram .bar")
+            .data(updatedBins, d => d.x0)     // key by x0 so bars match 1:1
             .transition()
             .duration(500)
             .ease(d3.easeCubicInOut)
+            .attr("x", d => xScale(d.x0))
+            .attr("width", d => xScale(d.x1) - xScale(d.x0))
             .attr("y", d => yScale(d.length))
             .attr("height", d => innerHeight - yScale(d.length));
 
-        // ---- Log current filter state ----
         console.log(`Filtered → tech: ${filterTech}, size: ${filterSize}, rows: ${updatedData.length}`);
+
+        handleHistogramMouseEvents();
     };
 
     // Update the scatterplot when filters change

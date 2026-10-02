@@ -15,6 +15,8 @@ const yScale = d3.scaleLinear();
 
 // ---------- Bin generator ----------
 const binGenerator = d3.bin()
+  .domain([0, 2800])       // fixed range
+  .thresholds(14)
   .value(d => d.energyConsumption);
 
 // ---------- Filter options for screen types ----------
@@ -28,11 +30,11 @@ const filters_screen = [
 // ---------- Filter options for screen sizes ----------
 const filters_size = [
   { id: "all", label: "All sizes", isActive: true },
-  { id: 24,    label: "24\"",      isActive: false },
-  { id: 32,    label: "32\"",      isActive: false },
-  { id: 55,    label: "55\"",      isActive: false },
-  { id: 65,    label: "65\"",      isActive: false },
-  { id: 98,    label: "98\"",      isActive: false }
+  { id: 24, label: "24\"", isActive: false },
+  { id: 32, label: "32\"", isActive: false },
+  { id: 55, label: "55\"", isActive: false },
+  { id: 65, label: "65\"", isActive: false },
+  { id: 98, label: "98\"", isActive: false }
 ];
 
 // ---------- Rescaling toggle ----------
